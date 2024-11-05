@@ -19,10 +19,17 @@
     </ion-item>
 
     <!-- Botón de Registro -->
-    <ion-button (click)="registrar()" expand="block" type="submit" [disabled]="!email || !password">Registrar</ion-button>
+
+    <ion-button (click)="registrar()" expand="block" type="submit" [disabled]="!email || !password">
+      <ion-icon name="person-add-outline"></ion-icon>
+      Registrar
+    </ion-button>
   </form>
 
   <div class="ion-padding-top">
-    <ion-button expand="block" color="light" routerLink="/login">Ya tengo cuenta</ion-button>
+    <ion-button expand="block" color="light" routerLink="/login">
+      <ion-icon name="close-outline"></ion-icon>
+      Ya tengo cuenta
+    </ion-button>
   </div>
 </ion-content>
