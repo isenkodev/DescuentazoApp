@@ -22,10 +22,21 @@ export class LoginPage {
 
   async login() {
     try {
+      // Inicia sesión con el servicio de Firebase
       let usuario = await this.firebase.auth(this.email, this.pass);
+
       if (usuario) {
+        // Aquí verificamos el correo del usuario y redirigimos según corresponda
+        if (this.email === 'g.huerta@duocuc.cl') {
+          // Si es el admin, lo redirigimos al panel de administración
+          this.router.navigate(['/admin']);
+        } else {
+          // Si no es admin, lo redirigimos a la página principal
+          this.router.navigate(['/home']);
+        }
+
+        // Llamamos al servicio de login (si necesitas realizar alguna acción adicional)
         this.loginService.login(); 
-        this.router.navigate(['/home']); 
       } else {
         this.toastMessage('Error en la autenticación.', 'danger');
       }
@@ -50,6 +61,6 @@ export class LoginPage {
   }
 
   RestablecerPass() {
-    this.router.navigate(['/restablecer-pass']); // Redirige a la ruta registrar-user
+    this.router.navigate(['/restablecer-pass']); // Redirige a la ruta restablecer-pass
   }
 }

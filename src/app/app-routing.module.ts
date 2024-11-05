@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { noAutenticadoGuard } from './guard/no-autenticado.guard';
 import { autenticadoGuard } from './guard/autenticado.guard';
+import { AdminAccessGuard } from './guard/admin-access.guard';
 const routes: Routes = [
   {
     path: 'home',
@@ -26,6 +27,11 @@ const routes: Routes = [
   {
     path: 'restablecer-pass',
     loadChildren: () => import('./restablecer-pass/restablecer-pass.module').then( m => m.RestablecerPassPageModule)
+  },
+  {
+    path: 'admin',
+    canActivate: [AdminAccessGuard] ,
+    loadChildren: () => import('./admin/admin.module').then( m => m.AdminPageModule)
   },
 
 ];
