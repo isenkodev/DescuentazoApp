@@ -1,0 +1,28 @@
+<ion-content class="ion-padding">
+  <div class="login-container">
+    <img src="assets/images/logo.png" alt="Logo" class="login-logo" />
+
+  <h2 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Registrar usuario</h2>
+</div>
+
+  <form>
+    <!-- Campo de Email -->
+    <ion-item>
+      <ion-label>Correo: </ion-label>
+      <ion-input type="email" [(ngModel)]="email" name="email" required></ion-input>
+    </ion-item>
+
+    <!-- Campo de Contraseña -->
+    <ion-item>
+      <ion-label>Contraseña: </ion-label>
+      <ion-input type="password" [(ngModel)]="password" name="pass" required></ion-input>
+    </ion-item>
+
+    <!-- Botón de Registro -->
+    <ion-button (click)="registrar()" expand="block" type="submit" [disabled]="!email || !password">Registrar</ion-button>
+  </form>
+
+  <div class="ion-padding-top">
+    <ion-button expand="block" color="light" routerLink="/login">Ya tengo cuenta</ion-button>
+  </div>
+</ion-content>

@@ -44,4 +44,12 @@ export class LoginPage {
     });
     toast.present();
   }
+
+  RegistrarUser() {
+    this.router.navigate(['/registrar-user']); // Redirige a la ruta registrar-user
+  }
+
+  RestablecerPass() {
+    this.router.navigate(['/restablecer-pass']); // Redirige a la ruta registrar-user
+  }
 }

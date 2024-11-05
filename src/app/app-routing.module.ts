@@ -18,6 +18,15 @@ const routes: Routes = [
     canActivate: [noAutenticadoGuard], // Permite el acceso solo a usuarios no autenticados
     loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
   },
+  {
+    path: 'registrar-user',
+    canActivate: [noAutenticadoGuard], // Permite el acceso solo a usuarios no autenticados
+    loadChildren: () => import('./registrar-user/registrar-user.module').then( m => m.RegistrarUserPageModule)
+  },
+  {
+    path: 'restablecer-pass',
+    loadChildren: () => import('./restablecer-pass/restablecer-pass.module').then( m => m.RestablecerPassPageModule)
+  },
 
 ];
 
