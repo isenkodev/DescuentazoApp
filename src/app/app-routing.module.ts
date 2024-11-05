@@ -1,20 +1,24 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-
+import { noAutenticadoGuard } from './guard/no-autenticado.guard';
+import { autenticadoGuard } from './guard/autenticado.guard';
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    canActivate: [autenticadoGuard], // Protege la ruta
+    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+    canActivate: [noAutenticadoGuard], // Permite el acceso solo a usuarios no autenticados
+    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
   },
+
 ];
 
 @NgModule({
