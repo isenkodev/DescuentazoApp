@@ -1,0 +1,7 @@
+{
+  "name": "Descuentazo-App",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
