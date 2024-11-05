@@ -1,0 +1,50 @@
+  .login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+  }
+  
+  .login-logo {
+    width: 250px; /* Ajusta el tamaño del logo según lo necesites */
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+  ion-item {
+    margin-bottom: 16px;
+    border: 2px solid black; /* Borde negro alrededor de cada input */
+    border-radius: 8px; /* Redondeo de bordes */
+  }
+  
+  ion-input {
+    --border-color: black; /* Borde negro en los inputs */
+  }
+  
+  ion-button {
+    border-radius: 8px; /* Redondeo de bordes */
+    margin-top: 20px;
+  }
+
+
+
+  .auth-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+.auth-link {
+  color: var(--ion-color-primary);
+  font-size: 5px;
+  margin: 5px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.auth-link:hover {
+  color: var(--ion-color-primary-shade);
+}

@@ -1,0 +1,29 @@
+<ion-content class="ion-padding">
+  <div class="login-container">
+    <img src="assets/images/logo.png" alt="Logo" class="login-logo" />
+
+    <!-- Formulario de Login -->
+    <form>
+      <ion-item>
+        <ion-label>Correo:</ion-label>
+        <ion-input type="email" [(ngModel)]="email" name="email" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Contraseña:</ion-label>
+        <ion-input type="password" [(ngModel)]="pass" name="password" required></ion-input>
+      </ion-item>
+
+      <ion-button expand="block" (click)="login()">
+        <ion-icon name="log-in-outline" slot="start"></ion-icon>
+        Ingresa
+      </ion-button>
+    </form>
+
+    <!-- Enlaces debajo del botón de login -->
+    <div class="auth-links">
+      <ion-button fill="clear" color="primary">Crear cuenta</ion-button>
+      <ion-button fill="clear" color="secondary">Recuperar contraseña</ion-button>
+    </div>
+  </div>
+</ion-content>
