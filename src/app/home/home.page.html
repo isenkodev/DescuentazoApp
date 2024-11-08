@@ -1,20 +1,86 @@
-<ion-header> 
-  <ion-toolbar color="warning">
-    <ion-title>
-      Home Descuentazo APP
-    </ion-title>
+<ion-menu side="start" contentId="main-content">
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Menú</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-item (click)="goToHome()">Inicio</ion-item>
+      <ion-item>Perfil</ion-item>
+      <ion-item (click)="goToFavoritos()">Favoritos</ion-item>
+      <ion-item>Lácteos</ion-item>
+      <ion-item>Verduras</ion-item>
+      <ion-item>Frutas</ion-item>
+      <ion-item>Abarrotes</ion-item>
+      <ion-item>Fiambrería</ion-item>
+      <ion-item>Panadería</ion-item>
+    </ion-list>
+    <ion-footer>
+      <ion-item button (click)="logout()">
+        <ion-icon name="log-out-outline" slot="start" ></ion-icon>
+        <ion-label>Cerrar sesión</ion-label>
+      </ion-item>
+    </ion-footer>
+  </ion-content>
+  
+</ion-menu>
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>DescuentazoApp</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <!-- EN PROCESO -->
-</ion-content>
+<ion-content id="main-content">
+  <ion-searchbar placeholder="Buscar..." [(ngModel)]="searchTerm"></ion-searchbar>
 
-<ion-footer>
-  <div class="ion-padding-top">
-    <ion-button expand="block" color="light" (click)="onLogout()">
-      <ion-icon name="close-outline"></ion-icon>
-      Desconectar
-    </ion-button>
-  </div>
-</ion-footer>
+  <ion-grid>
+    <h2 class="section-title" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 25px; text-align: center;">Recomendados</h2>
+    <ion-row>
+      <ion-col size="12" *ngFor="let item of recomendados">
+        <ion-card class="custom-card">
+          <ion-item lines="none">
+            <ion-thumbnail slot="start">
+              <img [src]="item.img" alt="Producto recomendado" />
+            </ion-thumbnail>
+            <ion-label>
+              <h3 style="font-size: 16px; font-weight: bold;">{{ item.nombre }}</h3>
+              <p style="font-size: 14px;">Precio original: {{ item.precio}}</p>
+              <p style="font-size: 14px; color: red;">Con 10% de descuento: {{ calcularPrecioDescuento(item.precio) }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <h2 class="section-title" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 25px; text-align: center;">Ofertas del día</h2>
+    <ion-row>
+      <ion-col size="12" *ngFor="let oferta of ofertas">
+        <ion-card class="custom-card">
+          <ion-item lines="none">
+            <ion-thumbnail slot="start">
+              <img [src]="oferta.img" alt="Oferta del día" />
+            </ion-thumbnail>
+            <ion-label>
+              <h3>{{ oferta.nombre }}</h3>
+              <p>{{ oferta.precios }}</p>
+              <p style="font-size: 14px;">Precio original: {{ oferta.precios}}</p>
+              <p style="font-size: 14px; color: red;">Con 15% de descuento: {{ calcularPrecioDescuentos(oferta.precios) }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="goToFavoritos()">
+      <ion-icon name="star"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  
+</ion-content>

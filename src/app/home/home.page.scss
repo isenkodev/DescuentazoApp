@@ -1,27 +1,33 @@
-#container {
-  text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+/* Ocultar el scrollbar en navegadores basados en Webkit (Chrome, Safari, Edge) */
+ion-menu ::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  background: transparent; /* Asegura que el fondo del scrollbar sea invisible */
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+/* Ocultar el scrollbar en Firefox */
+ion-menu {
+  scrollbar-width: none; /* Oculta el scrollbar en Firefox */
+  -ms-overflow-style: none; /* Oculta el scrollbar en Internet Explorer 10+ */
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+/* Asegura que el ion-content también esté sin scrollbar */
+ion-menu ion-content {
+  --overflow: hidden; /* Estilo de Ionic para ocultar el scrollbar */
+}
+ion-menu ::-webkit-scrollbar {
+  display: none !important;
 }
 
-#container a {
-  text-decoration: none;
+ion-menu {
+  scrollbar-width: none !important;
+}
+
+
+.custom-card {
+  background-color: #ffffff;  // Un gris oscuro
+  color: white;  // Texto en blanco para contraste
+  border-radius: 10px;
+  border:  2px solid white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }

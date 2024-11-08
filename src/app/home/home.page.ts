@@ -9,27 +9,38 @@ import { LoginServiceService } from '../service/login.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  searchTerm: string = '';
+  recomendados = [
+    { img: 'assets/images/mayo.png', nombre: 'Mayo Kraft', precio: 1000 },
+    { img: 'assets/images/cloro.png', nombre: 'Cloro', precio: 800 },
+    { img: 'assets/images/completo.png', nombre: 'Completo', precio: 1200 },
+  ];
+  ofertas = [
+    { img: 'assets/images/jugo.png', nombre: 'Jugos en polvo yupi', precios: 200 },
+    { img: 'assets/images/comida-de-perro.png', nombre: 'Comida pra perro', precios: 15000 },
+    { img: 'assets/images/cereal.png', nombre: 'Cereal Zucaritas', precios: 25000 },
+  ];
 
-  username: string = 'guest'; // Valor predeterminado
+  constructor(private router: Router) {}
 
-  constructor(
-    private router: Router,
-    private alertController: AlertController,
-    private loginService: LoginServiceService
-  ) {
-    // Verificamos si el nombre de usuario fue pasado a través de la navegación
-    const state = this.router.getCurrentNavigation()?.extras?.state;
-    if (state && state['email']) {
-      console.log(`User: ${state['email']}`);
-      this.username = state['email']; // Asignamos el valor de 'user' al username
-    }
+  calcularPrecioDescuento(precio: number): number {
+    return precio - (precio * 0.1);
   }
 
-  // Método para cerrar sesión
-  onLogout() {
-    this.loginService.logout(); 
-    this.router.navigate(['/login']); 
+  calcularPrecioDescuentos(precios: number): number {
+    return precios - (precios * 0.1);
+  }
+  logout() {
+    console.log('Cerrando sesión...');
+    // Aquí puedes agregar lógica para cerrar sesión, por ejemplo limpiar el almacenamiento local
+    this.router.navigate(['/login']);  // Redirige al login
   }
 
+  goToFavoritos() {
+    this.router.navigate(['/favpage']);  // Redirige a la página de Favoritos
+  }
 
+  goToHome() {
+    this.router.navigate(['/home']); // Redirige a la página principal
+  }
 }
