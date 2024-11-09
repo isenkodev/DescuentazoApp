@@ -6,7 +6,7 @@ import { AdminAccessGuard } from './guard/admin-access.guard';
 const routes: Routes = [
   {
     path: 'home',
-    //canActivate: [autenticadoGuard], // Protege la ruta
+    canActivate: [autenticadoGuard], // Protege la ruta
     loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },
   {
@@ -32,7 +32,8 @@ const routes: Routes = [
     path: 'admin',
     canActivate: [AdminAccessGuard] ,
     loadChildren: () => import('./admin/admin.module').then( m => m.AdminPageModule)
-  },  {
+  },
+  {
     path: 'favpage',
     loadChildren: () => import('./favpage/favpage.module').then( m => m.FavpagePageModule)
   },
