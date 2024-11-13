@@ -6,7 +6,7 @@ import { AdminAccessGuard } from './guard/admin-access.guard';
 const routes: Routes = [
   {
     path: 'home',
-    canActivate: [autenticadoGuard], // Protege la ruta
+    //canActivate: [autenticadoGuard], // Protege la ruta
     loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },
   {
@@ -36,7 +36,37 @@ const routes: Routes = [
   {
     path: 'favpage',
     loadChildren: () => import('./favpage/favpage.module').then( m => m.FavpagePageModule)
+  },  {
+    path: 'product-page',
+    loadChildren: () => import('./product-page/product-page.module').then( m => m.ProductPagePageModule)
   },
+  {
+    path: 'lacteos',
+    loadChildren: () => import('./lacteos/lacteos.module').then( m => m.LacteosPageModule)
+  },
+  {
+    path: 'verduras',
+    loadChildren: () => import('./verduras/verduras.module').then( m => m.VerdurasPageModule)
+  },
+  {
+    path: 'abarrotes',
+    loadChildren: () => import('./abarrotes/abarrotes.module').then( m => m.AbarrotesPageModule)
+  },
+  {
+    path: 'frutas',
+    loadChildren: () => import('./frutas/frutas.module').then( m => m.FrutasPageModule)
+  },
+  {
+    path: 'fiambreria',
+    loadChildren: () => import('./fiambreria/fiambreria.module').then( m => m.FiambreriaPageModule)
+  },
+  {
+    path: 'panaderia',
+    loadChildren: () => import('./panaderia/panaderia.module').then( m => m.PanaderiaPageModule)
+  },
+
+
+
 
 
 ];

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-admin',
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class AdminPage implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,private navCtrl: NavController) { }
 
   ngOnInit() {
   }
@@ -16,5 +17,7 @@ export class AdminPage implements OnInit {
   goHome() {
     this.router.navigate(['/home']);
   }
-
+  goToAddProduct() {
+    this.navCtrl.navigateForward('/add-product');  // Navega a la página de "add-product"
+  }
 }

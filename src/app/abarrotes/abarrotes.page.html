@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Abarrotes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Mostrar los productos de la categoría Panadería -->
+  <ion-list>
+    <ion-item *ngFor="let product of abarrotes">
+      <ion-avatar slot="start">
+        <img [src]="product.img" *ngIf="product.img" />
+      </ion-avatar>
+      <ion-label>
+        <h2>{{ product.name }}</h2>
+        <p>{{ product.desc }}</p>
+        <p>Descuento: {{ product.descuento }}</p>
+        <p>Precio: {{ product.precionodes }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
