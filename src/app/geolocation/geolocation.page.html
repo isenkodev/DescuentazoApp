@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Geolocalización de Supermercados</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Mostrar coordenadas actuales -->
+  <ion-item>
+    <ion-label>Latitud</ion-label>
+    <ion-input [value]="latitude" readonly></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Longitud</ion-label>
+    <ion-input [value]="longitude" readonly></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Precisión</ion-label>
+    <ion-input [value]="accuracy" readonly></ion-input>
+  </ion-item>
+
+  <!-- Botón para obtener ubicación y buscar supermercados -->
+  <ion-button expand="full" (click)="getCurrentPosition()">Obtener Supermercados Cercanos</ion-button>
+
+  <!-- Lista de supermercados cercanos -->
+  <ion-list>
+    <ion-item *ngFor="let supermarket of supermarkets">
+      <ion-label>
+        <h2>{{ supermarket.name }}</h2>
+        <p>{{ supermarket.vicinity }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

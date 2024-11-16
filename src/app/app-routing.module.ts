@@ -64,6 +64,10 @@ const routes: Routes = [
     path: 'panaderia',
     loadChildren: () => import('./panaderia/panaderia.module').then( m => m.PanaderiaPageModule)
   },
+  {
+    path: 'geolocation',
+    loadChildren: () => import('./geolocation/geolocation.module').then( m => m.GeolocationPageModule)
+  },
 
 
 

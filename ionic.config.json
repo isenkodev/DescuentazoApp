@@ -3,5 +3,14 @@
   "integrations": {
     "capacitor": {}
   },
-  "type": "angular"
+  "type": "angular",
+
+  "proxies": [
+    {
+      "context": "/google-places",
+      "target": "https://maps.googleapis.com",
+      "changeOrigin": true,
+      "secure": false
+    }
+  ]
 }
