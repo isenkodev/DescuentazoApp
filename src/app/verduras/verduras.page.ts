@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-verduras',
@@ -9,7 +10,7 @@ export class VerdurasPage implements OnInit {
 
   verduras: any[] = [];  
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     this.loadVerduras(); 
@@ -23,6 +24,8 @@ export class VerdurasPage implements OnInit {
       this.verduras = products.filter((p: any) => p.category === 'Verduras');  
     }
   }
-
+  goToHome() {
+    this.router.navigate(['/home']);
+  }
 }
 

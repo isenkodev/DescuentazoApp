@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-abarrotes',
@@ -9,7 +10,7 @@ export class AbarrotesPage implements OnInit {
 
   abarrotes: any[] = [];  
 
-  constructor() { }
+  constructor(private router :Router) { }
 
   ngOnInit() {
     this.loadAbarrotes(); 
@@ -22,6 +23,9 @@ export class AbarrotesPage implements OnInit {
       const products = JSON.parse(storedProducts); 
       this.abarrotes = products.filter((p: any) => p.category === 'Abarrotes');  
     }
+  }
+  goToHome() {
+    this.router.navigate(['/home']);
   }
 
 }

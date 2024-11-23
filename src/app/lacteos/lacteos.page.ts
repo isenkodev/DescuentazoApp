@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lacteos',
@@ -9,7 +10,7 @@ export class LacteosPage implements OnInit {
 
   lacteos: any[] = [];  // Lista de productos de la categoría Lácteos
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     this.loadLacteos(); // Cargar los productos de la categoría Lácteos desde el localStorage
@@ -23,5 +24,7 @@ export class LacteosPage implements OnInit {
       this.lacteos = products.filter((p: any) => p.category === 'Lácteos');  // Filtrar los productos por la categoría Lácteos
     }
   }
-
+  goToHome() {
+    this.router.navigate(['/home']);
+  }
 }

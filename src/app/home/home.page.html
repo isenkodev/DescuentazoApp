@@ -1,31 +1,3 @@
-<ion-menu side="start" contentId="main-content">
-  <ion-header>
-    <ion-toolbar color="primary">
-      <ion-title>Menú</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content>
-    <ion-list>
-      <ion-item (click)="goToHome()">Inicio</ion-item>
-      <ion-item>Perfil</ion-item>
-      <ion-item (click)="goToFavoritos()">Favoritos</ion-item>
-      <ion-item>Lácteos</ion-item>
-      <ion-item>Verduras</ion-item>
-      <ion-item>Frutas</ion-item>
-      <ion-item>Abarrotes</ion-item>
-      <ion-item>Fiambrería</ion-item>
-      <ion-item>Panadería</ion-item>
-    </ion-list>
-    <ion-footer>
-      <ion-item button (click)="logout()">
-        <ion-icon name="log-out-outline" slot="start" ></ion-icon>
-        <ion-label>Cerrar sesión</ion-label>
-      </ion-item>
-    </ion-footer>
-  </ion-content>
-  
-</ion-menu>
-
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -36,7 +8,21 @@
 </ion-header>
 
 <ion-content id="main-content">
-  <ion-searchbar placeholder="Buscar..." [(ngModel)]="searchTerm"></ion-searchbar>
+  <ion-searchbar 
+    placeholder="Buscar..." 
+    [(ngModel)]="searchTerm">
+  </ion-searchbar>
+
+  <ion-button expand="full" color="primary" (click)="onSearch()">
+    Buscar
+  </ion-button>
+
+<div *ngIf="errorMessage" class="error-message">
+  <ion-text color="danger">
+    <p>{{ errorMessage }}</p>
+  </ion-text>
+</div>
+
 
   <ion-grid>
     <h2 class="section-title" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 25px; text-align: center;">Recomendados</h2>
@@ -69,7 +55,7 @@
               <h3>{{ oferta.nombre }}</h3>
               <p>{{ oferta.precios }}</p>
               <p style="font-size: 14px;">Precio original: {{ oferta.precios}}</p>
-              <p style="font-size: 14px; color: red;">Con 15% de descuento: {{ calcularPrecioDescuentos(oferta.precios) }}</p>
+              <p style="font-size: 14px; color: red;">Con 10% de descuento: {{ calcularPrecioDescuentos(oferta.precios) }}</p>
             </ion-label>
           </ion-item>
         </ion-card>
@@ -82,5 +68,4 @@
       <ion-icon name="star"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-  
 </ion-content>

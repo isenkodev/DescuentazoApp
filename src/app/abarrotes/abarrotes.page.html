@@ -5,7 +5,12 @@
 </ion-header>
 
 <ion-content>
-  <!-- Mostrar los productos de la categoría Panadería -->
+  <!-- Botón para ir al inicio utilizando la función -->
+  <ion-button (click)="goToHome()" color="primary" expand="full" style="margin: 10px 0;">
+    Ir a Inicio
+  </ion-button>
+
+  <!-- Mostrar los productos de la categoría Abarrotes -->
   <ion-list>
     <ion-item *ngFor="let product of abarrotes">
       <ion-avatar slot="start">

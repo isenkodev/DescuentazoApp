@@ -6,6 +6,11 @@
 
 <ion-content>
   <!-- Mostrar los productos de Lácteos -->
+  <div class="volver-btn-container">
+    <ion-button class="volver-btn" (click)="goToHome()" expand="full">
+      Volver a Inicio
+    </ion-button>
+  </div>
   <ion-list>
     <ion-item *ngFor="let product of lacteos">
       <ion-avatar slot="start">

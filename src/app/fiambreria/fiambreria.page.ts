@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-fiambreria',
@@ -9,7 +10,7 @@ export class FiambreriaPage implements OnInit {
 
   fiambreria: any[] = [];  // Lista de productos de la categoría Panadería
 
-  constructor() { }
+  constructor(private router :Router) { }
 
   ngOnInit() {
     this.loadFiambreria(); // Cargar los productos de la categoría Panadería desde el localStorage
@@ -23,5 +24,7 @@ export class FiambreriaPage implements OnInit {
       this.fiambreria = products.filter((p: any) => p.category === 'Fiambrería');  // Filtrar los productos por la categoría Panadería
     }
   }
-
+  goToHome() {
+    this.router.navigate(['/home']);
+  }
 }

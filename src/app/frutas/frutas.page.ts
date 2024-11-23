@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-frutas',
@@ -9,7 +10,7 @@ export class FrutasPage implements OnInit {
 
   frutas: any[] = [];  
   
-    constructor() { }
+    constructor(private router:Router) { }
   
     ngOnInit() {
       this.loadFrutas(); 
@@ -23,7 +24,9 @@ export class FrutasPage implements OnInit {
         this.frutas = products.filter((p: any) => p.category === 'Frutas');  
       }
     }
-  
+    goToHome() {
+      this.router.navigate(['/home']);
+    }
   }
   
   
