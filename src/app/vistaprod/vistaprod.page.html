@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>{{ product?.name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- Imagen del producto -->
+  <div class="product-image">
+    <ion-img [src]="product?.img" alt="Producto" class="img-product"></ion-img>
+  </div>
+
+  <!-- Detalles del producto -->
+  <div class="product-details">
+    <h2>{{ product?.name }}</h2>
+    <p class="description">{{ product?.desc }}</p>
+    
+    <div class="price-section">
+      <p class="price">
+        <span class="original-price">{{ product?.precionodes | currency:'CLP':'symbol' }}</span>
+        <span class="discount-price">
+          {{ calcularPrecioDescuento(product?.precionodes) | currency:'CLP':'symbol'}}
+        </span>
+      </p>
+      <p class="discount-info" *ngIf="product?.descuento">
+        ¡Descuento del {{ product?.descuento }}!
+      </p>
+    </div>
+  </div>
+
+  <!-- Disponibilidad en supermercados -->
+  <div class="supermarkets">
+    <h3>Disponibilidad en supermercados:</h3>
+    <div *ngFor="let store of product?.stores" [ngClass]="{'in-stock': store.available, 'out-of-stock': !store.available}" class="store-item">
+      <ion-label class="store-name">{{ store.name }}</ion-label>
+      <ion-badge [color]="store.available ? 'success' : 'danger'" class="store-status">
+        {{ store.available ? 'Disponible' : 'No disponible' }}
+      </ion-badge>
+    </div>
+  </div>
+
+  <!-- Imagen Ubi -->
+  <div class="product-location">
+    <ion-img src="assets/images/ubi.png"  alt="Ubicación del producto" class="img-location"></ion-img>
+  </div>
+
+  <!-- Botón para volver -->
+  <div class="back-button">
+    <ion-button expand="block" color="secondary" (click)="goBack()">Volver</ion-button>
+  </div>
+</ion-content>

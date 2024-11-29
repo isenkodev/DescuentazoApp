@@ -10,7 +10,7 @@
     Ir a Inicio
   </ion-button>
   <ion-list>
-    <ion-item *ngFor="let product of frutas">
+    <ion-item *ngFor="let product of frutas" (click)="goToVistaprod(product)">
       <ion-avatar slot="start">
         <img [src]="product.img" *ngIf="product.img" />
       </ion-avatar>

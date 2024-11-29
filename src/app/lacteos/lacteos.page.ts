@@ -24,6 +24,14 @@ export class LacteosPage implements OnInit {
       this.lacteos = products.filter((p: any) => p.category === 'Lácteos');  // Filtrar los productos por la categoría Lácteos
     }
   }
+
+  // Función para redirigir a Vistaprod con el producto seleccionado
+  goToVistaprod(product: any) {
+    this.router.navigate(['/vistaprod'], {
+      state: { product: product }  // Pasamos el producto como estado
+    });
+  }
+
   goToHome() {
     this.router.navigate(['/home']);
   }

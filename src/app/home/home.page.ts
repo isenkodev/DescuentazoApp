@@ -42,6 +42,9 @@ export class HomePage {
     } else if (searchTerm === 'verduras') {
       this.router.navigate(['/verduras']);
       this.errorMessage = '';
+    } else if (searchTerm === 'fiambreria') {
+      this.router.navigate(['/fiambreria']);
+      this.errorMessage = '';
     } else {
       this.errorMessage = 'Categoría no existente'; // Mostrar mensaje de error si no se encuentra la categoría
 

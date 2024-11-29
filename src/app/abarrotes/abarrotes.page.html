@@ -12,7 +12,7 @@
 
   <!-- Mostrar los productos de la categoría Abarrotes -->
   <ion-list>
-    <ion-item *ngFor="let product of abarrotes">
+    <ion-item *ngFor="let product of abarrotes" (click)="goToVistaprod(product)">
       <ion-avatar slot="start">
         <img [src]="product.img" *ngIf="product.img" />
       </ion-avatar>

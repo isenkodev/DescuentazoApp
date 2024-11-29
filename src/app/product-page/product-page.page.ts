@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Camera, CameraResultType } from '@capacitor/camera'; // Importamos la cámara de Capacitor
 
 // Definir la interfaz Product para tipar los productos
+interface Store {
+  name: string;
+  available: boolean;
+}
+
 interface Product {
   name: string;
   descuento: string;
@@ -9,6 +13,7 @@ interface Product {
   desc: string;
   img: string;
   category: string;
+  stores: Store[];  // Lista de supermercados y su disponibilidad
 }
 
 @Component({
@@ -17,6 +22,16 @@ interface Product {
   styleUrls: ['./product-page.page.scss'],
 })
 export class ProductPagePage implements OnInit {
+
+  // Lista de supermercados
+  supermarkets = [
+    { name: 'Unimarc', selected: false },
+    { name: 'Mayorista 10', selected: false },
+    { name: 'Tottus', selected: false },
+    { name: 'Lider', selected: false },
+    { name: 'Jumbo', selected: false }
+
+  ];
 
   // Variables para almacenar los productos de cada categoría
   lacteos: Product[] = [];
@@ -27,10 +42,10 @@ export class ProductPagePage implements OnInit {
   panaderia: Product[] = [];
 
   // Producto que se va a agregar
-  newProduct: Product = { name: '', descuento: '', precionodes: '', desc: '', img: '', category: '' };
+  newProduct: Product = { name: '', descuento: '', precionodes: '', desc: '', img: '', category: '', stores: [] };
 
   // Lista de todos los productos
-  products: Product[] = []; 
+  products: Product[] = [];
 
   constructor() { }
 
@@ -64,14 +79,31 @@ export class ProductPagePage implements OnInit {
       return;
     }
 
+    // Añadir la disponibilidad de los productos en los supermercados seleccionados
+    const selectedStores = this.supermarkets.filter(store => store.selected).map(store => ({
+      name: store.name,
+      available: true  // Si está seleccionado, asumimos que está disponible
+    }));
+
+    // Asegurarnos de que el producto tiene al menos un supermercado seleccionado
+    if (selectedStores.length === 0) {
+      alert('Por favor, seleccione al menos un supermercado');
+      return;
+    }
+
+    // Asignar la lista de supermercados al nuevo producto
+    this.newProduct.stores = selectedStores;
+
     this.products.push(this.newProduct);  // Agregar el producto al array de productos
     localStorage.setItem('products', JSON.stringify(this.products));  // Guardar en el localStorage
     this.filterCategories();  // Filtrar los productos por categoría nuevamente
-    this.newProduct = { name: '', descuento: '', precionodes: '', desc: '', img: '', category: '' };  // Limpiar el formulario
+
+    // Limpiar el formulario
+    this.newProduct = { name: '', descuento: '', precionodes: '', desc: '', img: '', category: '', stores: [] };
+    this.supermarkets.forEach(store => store.selected = false);  // Limpiar las selecciones de supermercados
   }
 
-  // Función para tomar una foto con la cámara
-  // Manejar la selección de un archivo de imagen
+  // Función para manejar la selección de un archivo de imagen
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
     if (file) {
@@ -82,17 +114,19 @@ export class ProductPagePage implements OnInit {
       reader.readAsDataURL(file);
     }
   }
- // Función para eliminar un producto
- deleteProduct(product: Product) {
-  let products: Product[] = JSON.parse(localStorage.getItem('products') || '[]');
+
+  // Función para eliminar un producto
+  deleteProduct(product: Product) {
+    let products: Product[] = JSON.parse(localStorage.getItem('products') || '[]');
+    
+    // Eliminar el producto de la lista completa
+    products = products.filter(p => p.name !== product.name); // Elimina el producto por el nombre
+
+    // Actualizar el localStorage con la nueva lista
+    localStorage.setItem('products', JSON.stringify(products));
+
+    // Recargar los productos después de eliminar
+    this.loadProducts();
+  }
+}
   
-  // Eliminar el producto de la lista completa
-  products = products.filter(p => p.name !== product.name); // Elimina el producto por el nombre
-
-  // Actualizar el localStorage con la nueva lista
-  localStorage.setItem('products', JSON.stringify(products));
-
-  // Recargar los productos después de eliminar
-  this.loadProducts();
-}
-}

@@ -1,0 +1,135 @@
+/* Estilos para el header */
+ion-header {
+    background-color: #4CAF50; /* Color verde para el header */
+  }
+  
+  ion-toolbar {
+    --background: #3880ff;  /* Color del toolbar */
+  }
+  
+  ion-title {
+    font-weight: bold;
+    font-size: 1.4rem;
+  }
+  
+  /* Contenedor de la imagen del producto */
+  .product-image {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .img-product {
+    margin-left: 50px;
+    width: 80%;
+    max-width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Detalles del producto */
+  .product-details {
+    text-align: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  .product-details h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .product-details .description {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 15px;
+  }
+  
+  /* Sección de precios */
+  .price-section {
+    margin-top: 20px;
+  }
+  
+  .price {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .original-price {
+    text-decoration: line-through;
+    color: #888;
+    margin-right: 10px;
+  }
+  
+  .discount-price {
+    color: #3880ff; /* Azul para el precio con descuento */
+  }
+  
+  /* Descuento */
+  .discount-info {
+    color: #3880ff;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-top: 10px;
+  }
+  
+  /* Disponibilidad en supermercados */
+  .supermarkets {
+    margin-top: 30px;
+    padding: 10px;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+  }
+  
+  .supermarkets h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .store-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .store-item:last-child {
+    border-bottom: none;
+  }
+  
+  .store-name {
+    font-size: 1.1rem;
+    color: #333;
+  }
+  
+  .store-status {
+    font-weight: bold;
+  }
+  
+  /* Botón de volver */
+  .back-button {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  /* Estilos para la imagen de ubicación */
+.product-location {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .img-location {
+    width: 100%;
+    max-width: 500px; /* Máximo ancho de la imagen */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+  }
+  

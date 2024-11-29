@@ -27,6 +27,11 @@ export class FrutasPage implements OnInit {
     goToHome() {
       this.router.navigate(['/home']);
     }
+    goToVistaprod(product: any) {
+      this.router.navigate(['/vistaprod'], {
+        state: { product: product }  // Pasamos el producto como estado
+      });
+    }
   }
   
   

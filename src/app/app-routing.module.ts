@@ -68,6 +68,10 @@ const routes: Routes = [
     path: 'geolocation',
     loadChildren: () => import('./geolocation/geolocation.module').then( m => m.GeolocationPageModule)
   },
+  {
+    path: 'vistaprod',
+    loadChildren: () => import('./vistaprod/vistaprod.module').then( m => m.VistaprodPageModule)
+  },
 
 
 
