@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Geolocation } from '@capacitor/geolocation';
-import { HttpClient } from '@angular/common/http'; // Para hacer peticiones HTTP
+import * as L from 'leaflet'; // Para usar Leaflet
 
 @Component({
   selector: 'app-geolocation',
@@ -8,28 +8,26 @@ import { HttpClient } from '@angular/common/http'; // Para hacer peticiones HTTP
   styleUrls: ['./geolocation.page.scss'],
 })
 export class GeolocationPage {
-
+  map: L.Map | undefined; // Referencia al mapa
+  marker: L.Marker | undefined; // Referencia al marcador
   latitude: string = '';
   longitude: string = '';
   accuracy: string = '';
-  supermarkets: any[] = []; // Para almacenar los resultados de supermercados
 
-  constructor(private http: HttpClient) {}
-
-  // Método para obtener la posición actual
+  // Método para obtener la posición actual y mostrar el mapa
   async getCurrentPosition() {
     try {
       const position = await Geolocation.getCurrentPosition();
       if (position && position.coords) {
-        // Guardamos las coordenadas
+        // Guardar coordenadas y precisión
         this.latitude = position.coords.latitude.toString();
         this.longitude = position.coords.longitude.toString();
         this.accuracy = position.coords.accuracy.toString();
-        
-        // Llamamos a la función para buscar supermercados cercanos
-        this.getNearbySupermarkets(position.coords.latitude, position.coords.longitude);
-        
+
         console.log('Ubicación obtenida:', position);
+
+        // Mostrar el mapa y el marcador
+        this.loadMap(position.coords.latitude, position.coords.longitude);
       } else {
         console.error('No se pudo obtener la ubicación');
       }
@@ -38,23 +36,27 @@ export class GeolocationPage {
     }
   }
 
-  // Método para buscar supermercados cercanos utilizando la Google Places API
-  getNearbySupermarkets(lat: number, lng: number) {
-    const apiKey = 'TU_API_KEY'; // Sustituye con tu clave de API de Google
-    const radius = 5000; // Radio de búsqueda en metros (5 km en este caso)
-    const type = 'supermarket'; // Tipo de lugar que estamos buscando
-  
-    const url = `/google-places/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${radius}&type=${type}&key=${apiKey}`;
+  // Método para inicializar el mapa
+  loadMap(lat: number, lng: number) {
+    if (!this.map) {
+      // Crear el mapa centrado en la ubicación actual
+      this.map = L.map('map').setView([lat, lng], 16);
 
-    
-    this.http.get(url).subscribe((response: any) => {
-      if (response.results) {
-        this.supermarkets = response.results;
-        console.log('Supermercados cercanos:', this.supermarkets);
-      } else {
-        console.error('No se encontraron supermercados cercanos');
-      }
-    });
+      // Agregar capa de OpenStreetMap
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors',
+      }).addTo(this.map);
+    }
+
+    // Si ya existe un marcador, actualiza su posición
+    if (this.marker) {
+      this.marker.setLatLng([lat, lng]).bindPopup('Estás aquí').openPopup();
+    } else {
+      // Crear un nuevo marcador
+      this.marker = L.marker([lat, lng])
+        .addTo(this.map)
+        .bindPopup('Estás aquí')
+        .openPopup();
+    }
   }
-  
 }
