@@ -30,7 +30,7 @@ export class VistaprodPage implements OnInit {
   }
   
   goBack() {
-    this.router.navigate(['/product-page']);  // Ajusta la ruta según tu configuración de enrutamiento
+    this.router.navigate(['/home']);  // Ajusta la ruta según tu configuración de enrutamiento
   }
   
 }

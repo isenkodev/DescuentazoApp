@@ -18,6 +18,6 @@ export class AdminPage implements OnInit {
     this.router.navigate(['/home']);
   }
   goToAddProduct() {
-    this.navCtrl.navigateForward('/add-product');  // Navega a la página de "add-product"
+    this.navCtrl.navigateForward('/product-page');  // Navega a la página de "add-product"
   }
 }

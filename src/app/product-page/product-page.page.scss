@@ -1,0 +1,131 @@
+/* Variables de diseño */
+:root {
+    --ion-color-primary: #4caf50; /* Verde elegante */
+    --ion-color-secondary: #ff9800; /* Naranja suave */
+    --ion-color-light: #f9f9f9; /* Fondo claro */
+    --ion-color-dark: #333; /* Texto oscuro */
+    --ion-border-radius: 12px;
+    --ion-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --ion-spacing: 16px;
+    --ion-spacing-small: 8px;
+  }
+  
+  /* Fondo general */
+  ion-content {
+    --background: var(--ion-color-light);
+    padding: var(--ion-spacing);
+  }
+  
+  /* Encabezado */
+  ion-header {
+    --background: var(--ion-color-primary);
+    color: white;
+  }
+  
+  ion-title {
+    font-size: 1.8rem;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  /* Formularios */
+  ion-item {
+    margin-bottom: var(--ion-spacing);
+    padding: var(--ion-spacing-small);
+    --background: white;
+    --border-radius: var(--ion-border-radius);
+    --box-shadow: var(--ion-box-shadow);
+  }
+  
+  ion-input,
+  ion-select,
+  input[type="file"] {
+    font-size: 1rem;
+    padding: var(--ion-spacing-small);
+    color: var(--ion-color-dark);
+  }
+  
+  ion-input::placeholder {
+    color: #bbb;
+  }
+  
+  /* Botón Guardar */
+  ion-button {
+    margin-top: var(--ion-spacing);
+    --background: var(--ion-color-primary);
+    --background-hover: var(--ion-color-secondary);
+    --border-radius: 20px;
+    --box-shadow: var(--ion-box-shadow);
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  /* Imágenes del producto */
+  ion-img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--ion-border-radius);
+    margin-top: var(--ion-spacing-small);
+    box-shadow: var(--ion-box-shadow);
+  }
+  
+  /* Categorías */
+  ion-label h2 {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: var(--ion-spacing-small);
+    color: var(--ion-color-dark);
+  }
+  
+  /* Productos */
+  ion-item ion-avatar img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: var(--ion-box-shadow);
+  }
+  
+  ion-label {
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+  
+  ion-label p {
+    color: #666;
+    margin-bottom: var(--ion-spacing-small);
+  }
+  
+  /* Disponibilidad */
+  .in-stock {
+    color: var(--ion-color-primary);
+    font-weight: bold;
+  }
+  
+  .out-of-stock {
+    color: #e53935; /* Rojo */
+    font-weight: bold;
+  }
+  
+  /* Botón Eliminar */
+  ion-buttons ion-button {
+    --background: #e53935;
+    --background-hover: #d32f2f;
+    --border-radius: 50%;
+    --box-shadow: var(--ion-box-shadow);
+  }
+  
+  ion-icon {
+    color: white;
+  }
+  
+  /* Espaciado entre productos */
+  ion-list {
+    margin-top: var(--ion-spacing);
+  }
+  
+  ion-item:not(:last-child) {
+    margin-bottom: var(--ion-spacing-small);
+  }
+  
+  

@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="profile-container">
+    <!-- Foto de perfil -->
+    <div class="profile-picture">
+      <img src="https://content.wepik.com/statics/20247448/preview-page3.jpg" alt="Foto de perfil">
+    </div>
+
+    <!-- Nombre de usuario -->
+    <div class="username">
+      <h2>German Huerta</h2>
+    </div>
+
+    <!-- Botón de favoritos -->
+    <ion-button expand="full" color="primary" (click)="goToFavoritos()">
+      <ion-icon name="star" slot="start"></ion-icon>
+      Ver favoritos
+    </ion-button>
+  </div>
+</ion-content>

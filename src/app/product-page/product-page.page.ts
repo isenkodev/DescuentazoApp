@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 // Definir la interfaz Product para tipar los productos
 interface Store {
@@ -30,7 +32,6 @@ export class ProductPagePage implements OnInit {
     { name: 'Tottus', selected: false },
     { name: 'Lider', selected: false },
     { name: 'Jumbo', selected: false }
-
   ];
 
   // Variables para almacenar los productos de cada categoría
@@ -47,7 +48,7 @@ export class ProductPagePage implements OnInit {
   // Lista de todos los productos
   products: Product[] = [];
 
-  constructor() { }
+  constructor(private toastController: ToastController, private router: Router) { }
 
   ngOnInit() {
     this.loadProducts();  // Cargar los productos desde el localStorage
@@ -73,9 +74,15 @@ export class ProductPagePage implements OnInit {
   }
 
   // Guardar un nuevo producto en el localStorage
-  saveProduct() {
+  async saveProduct() {
     if (!this.newProduct.category) {
-      alert('Por favor, seleccione una categoría');
+      const toast = await this.toastController.create({
+        message: 'Por favor, seleccione una categoría',
+        duration: 2000,
+        color: 'danger',
+        position: 'top',
+      });
+      await toast.present();
       return;
     }
 
@@ -87,7 +94,13 @@ export class ProductPagePage implements OnInit {
 
     // Asegurarnos de que el producto tiene al menos un supermercado seleccionado
     if (selectedStores.length === 0) {
-      alert('Por favor, seleccione al menos un supermercado');
+      const toast = await this.toastController.create({
+        message: 'Por favor, seleccione al menos un supermercado',
+        duration: 2000,
+        color: 'danger',
+        position: 'top',
+      });
+      await toast.present();
       return;
     }
 
@@ -97,6 +110,15 @@ export class ProductPagePage implements OnInit {
     this.products.push(this.newProduct);  // Agregar el producto al array de productos
     localStorage.setItem('products', JSON.stringify(this.products));  // Guardar en el localStorage
     this.filterCategories();  // Filtrar los productos por categoría nuevamente
+
+    // Mostrar toast de éxito
+    const successToast = await this.toastController.create({
+      message: 'Producto agregado correctamente',
+      duration: 2000,  // Duración en milisegundos
+      color: 'success',
+      position: 'top', // Posición: top, middle, bottom
+    });
+    await successToast.present();
 
     // Limpiar el formulario
     this.newProduct = { name: '', descuento: '', precionodes: '', desc: '', img: '', category: '', stores: [] };
@@ -128,5 +150,7 @@ export class ProductPagePage implements OnInit {
     // Recargar los productos después de eliminar
     this.loadProducts();
   }
+  back() {
+    this.router.navigate(['/admin']);
+  }
 }
-  

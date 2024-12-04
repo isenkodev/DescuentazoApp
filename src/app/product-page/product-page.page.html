@@ -6,22 +6,31 @@
 
 <ion-content>
   <!-- Formulario para agregar un producto -->
-  <ion-item>
-    <ion-input [(ngModel)]="newProduct.name" placeholder="Nombre del producto"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input [(ngModel)]="newProduct.descuento" placeholder="Descuento"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input [(ngModel)]="newProduct.precionodes" placeholder="Precio original"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input [(ngModel)]="newProduct.desc" placeholder="Descripción"></ion-input>
-  </ion-item>
+  <form>
+    <ion-item>
+      <ion-label>Nombre: </ion-label>
+      <ion-input [(ngModel)]="newProduct.name" name="name" placeholder="Ej: Queso Gauda"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Descuento (%):</ion-label>
+      <ion-input [(ngModel)]="newProduct.descuento" name="descuento" placeholder="Ej: 20"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Precio: </ion-label>
+      <ion-input [(ngModel)]="newProduct.precionodes" name="precionodes" placeholder="Ej: 1200"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Descripción: </ion-label>
+      <ion-textarea [(ngModel)]="newProduct.desc" name="desc" placeholder="Información del producto"></ion-textarea>
+    </ion-item>
+  </form>
 
   <!-- Selección de imagen -->
   <ion-item>
-    <ion-label>Imagen del producto</ion-label>
+    <ion-label>Imagen: </ion-label>
     <input type="file" (change)="onFileSelected($event)" accept="image/*" />
   </ion-item>
 
@@ -33,7 +42,7 @@
   <!-- Selección de categoría -->
   <ion-item>
     <ion-label>Categoría</ion-label>
-    <ion-select [(ngModel)]="newProduct.category" placeholder="Selecciona una categoría">
+    <ion-select [(ngModel)]="newProduct.category" name="category" placeholder="Selecciona una categoría">
       <ion-select-option value="Lácteos">Lácteos</ion-select-option>
       <ion-select-option value="Verduras">Verduras</ion-select-option>
       <ion-select-option value="Frutas">Frutas</ion-select-option>
@@ -48,181 +57,11 @@
     <ion-label>Disponibilidad en Supermercados</ion-label>
   </ion-item>
   <ion-item *ngFor="let store of supermarkets">
-    <ion-checkbox [(ngModel)]="store.selected" [value]="store.name"></ion-checkbox>
+    <ion-checkbox [(ngModel)]="store.selected" name="store-{{store.name}}" [value]="store.name"></ion-checkbox>
     <ion-label>{{ store.name }}</ion-label>
   </ion-item>
 
   <!-- Botón para guardar el producto -->
   <ion-button expand="block" (click)="saveProduct()">Guardar Producto</ion-button>
-
-  <!-- Mostrar los productos de cada categoría -->
-  <ion-list>
-    <!-- Lácteos -->
-    <ion-item>
-      <ion-label>
-        <h2>Stock Lácteos</h2>
-      </ion-label>
-    </ion-item>
-    <ion-item *ngFor="let product of lacteos">
-      <ion-avatar slot="start">
-        <img [src]="product.img" *ngIf="product.img" />
-      </ion-avatar>
-      <ion-label>
-        <h2>{{ product.name }}</h2>
-        <p>{{ product.desc }}</p>
-        <p>Descuento: {{ product.descuento }}</p>
-        <p>Precio: {{ product.precionodes }}</p>
-      </ion-label>
-      <ion-item *ngFor="let store of product.stores">
-        <ion-label [ngClass]="{ 'in-stock': store.available, 'out-of-stock': !store.available }">
-          {{ store.name }} - {{ store.available ? 'Disponible' : 'No disponible' }}
-        </ion-label>
-      </ion-item>
-      <ion-buttons slot="end">
-        <ion-button (click)="deleteProduct(product)">
-          <ion-icon name="trash-outline"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-item>
-
-    <!-- Verduras -->
-    <ion-item>
-      <ion-label>
-        <h2>Stock Verduras</h2>
-      </ion-label>
-    </ion-item>
-    <ion-item *ngFor="let product of verduras">
-      <ion-avatar slot="start">
-        <img [src]="product.img" *ngIf="product.img" />
-      </ion-avatar>
-      <ion-label>
-        <h2>{{ product.name }}</h2>
-        <p>{{ product.desc }}</p>
-        <p>Descuento: {{ product.descuento }}</p>
-        <p>Precio: {{ product.precionodes }}</p>
-      </ion-label>
-      <ion-item *ngFor="let store of product.stores">
-        <ion-label [ngClass]="{ 'in-stock': store.available, 'out-of-stock': !store.available }">
-          {{ store.name }} - {{ store.available ? 'Disponible' : 'No disponible' }}
-        </ion-label>
-      </ion-item>
-      <ion-buttons slot="end">
-        <ion-button (click)="deleteProduct(product)">
-          <ion-icon name="trash-outline"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-item>
-
-    <!-- Frutas -->
-    <ion-item>
-      <ion-label>
-        <h2>Stock Frutas</h2>
-      </ion-label>
-    </ion-item>
-    <ion-item *ngFor="let product of frutas">
-      <ion-avatar slot="start">
-        <img [src]="product.img" *ngIf="product.img" />
-      </ion-avatar>
-      <ion-label>
-        <h2>{{ product.name }}</h2>
-        <p>{{ product.desc }}</p>
-        <p>Descuento: {{ product.descuento }}</p>
-        <p>Precio: {{ product.precionodes }}</p>
-      </ion-label>
-      <ion-item *ngFor="let store of product.stores">
-        <ion-label [ngClass]="{ 'in-stock': store.available, 'out-of-stock': !store.available }">
-          {{ store.name }} - {{ store.available ? 'Disponible' : 'No disponible' }}
-        </ion-label>
-      </ion-item>
-      <ion-buttons slot="end">
-        <ion-button (click)="deleteProduct(product)">
-          <ion-icon name="trash-outline"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-item>
-
-    <!-- Abarrotes -->
-    <ion-item>
-      <ion-label>
-        <h2>Stock Abarrotes</h2>
-      </ion-label>
-    </ion-item>
-    <ion-item *ngFor="let product of abarrotes">
-      <ion-avatar slot="start">
-        <img [src]="product.img" *ngIf="product.img" />
-      </ion-avatar>
-      <ion-label>
-        <h2>{{ product.name }}</h2>
-        <p>{{ product.desc }}</p>
-        <p>Descuento: {{ product.descuento }}</p>
-        <p>Precio: {{ product.precionodes }}</p>
-      </ion-label>
-      <ion-item *ngFor="let store of product.stores">
-        <ion-label [ngClass]="{ 'in-stock': store.available, 'out-of-stock': !store.available }">
-          {{ store.name }} - {{ store.available ? 'Disponible' : 'No disponible' }}
-        </ion-label>
-      </ion-item>
-      <ion-buttons slot="end">
-        <ion-button (click)="deleteProduct(product)">
-          <ion-icon name="trash-outline"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-item>
-
-    <!-- Fiambrería -->
-    <ion-item>
-      <ion-label>
-        <h2>Stock Fiambrería</h2>
-      </ion-label>
-    </ion-item>
-    <ion-item *ngFor="let product of fiambreria">
-      <ion-avatar slot="start">
-        <img [src]="product.img" *ngIf="product.img" />
-      </ion-avatar>
-      <ion-label>
-        <h2>{{ product.name }}</h2>
-        <p>{{ product.desc }}</p>
-        <p>Descuento: {{ product.descuento }}</p>
-        <p>Precio: {{ product.precionodes }}</p>
-      </ion-label>
-      <ion-item *ngFor="let store of product.stores">
-        <ion-label [ngClass]="{ 'in-stock': store.available, 'out-of-stock': !store.available }">
-          {{ store.name }} - {{ store.available ? 'Disponible' : 'No disponible' }}
-        </ion-label>
-      </ion-item>
-      <ion-buttons slot="end">
-        <ion-button (click)="deleteProduct(product)">
-          <ion-icon name="trash-outline"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-item>
-
-    <!-- Panadería -->
-    <ion-item>
-      <ion-label>
-        <h2>Stock Panadería</h2>
-      </ion-label>
-    </ion-item>
-    <ion-item *ngFor="let product of panaderia">
-      <ion-avatar slot="start">
-        <img [src]="product.img" *ngIf="product.img" />
-      </ion-avatar>
-      <ion-label>
-        <h2>{{ product.name }}</h2>
-        <p>{{ product.desc }}</p>
-        <p>Descuento: {{ product.descuento }}</p>
-        <p>Precio: {{ product.precionodes }}</p>
-      </ion-label>
-      <ion-item *ngFor="let store of product.stores">
-        <ion-label [ngClass]="{ 'in-stock': store.available, 'out-of-stock': !store.available }">
-          {{ store.name }} - {{ store.available ? 'Disponible' : 'No disponible' }}
-        </ion-label>
-      </ion-item>
-      <ion-buttons slot="end">
-        <ion-button (click)="deleteProduct(product)">
-          <ion-icon name="trash-outline"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-item>
-  </ion-list>
+  <ion-button expand="block" (click)="back()">Volver a vista administrador</ion-button>
 </ion-content>

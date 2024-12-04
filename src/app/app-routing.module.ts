@@ -36,7 +36,8 @@ const routes: Routes = [
   {
     path: 'favpage',
     loadChildren: () => import('./favpage/favpage.module').then( m => m.FavpagePageModule)
-  },  {
+  },
+  {
     path: 'product-page',
     loadChildren: () => import('./product-page/product-page.module').then( m => m.ProductPagePageModule)
   },
@@ -71,6 +72,10 @@ const routes: Routes = [
   {
     path: 'vistaprod',
     loadChildren: () => import('./vistaprod/vistaprod.module').then( m => m.VistaprodPageModule)
+  },
+  {
+    path: 'perfil',
+    loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
   },
 
 
